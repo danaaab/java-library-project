@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Author Details</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .author-info {
+            margin-bottom: 30px;
+        }
+        .books-list {
+            margin-top: 20px;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .book-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+        }
+        .button.delete {
+            background-color: #dc3545;
+        }
+        .button.edit {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="author-info">
+            <h1 th:text="${author.name}">Author Name</h1>
+            <p th:text="${author.bio}">Author Bio</p>
+        </div>
+
+        <div class="books-list">
+            <h2>Books by this Author</h2>
+            <div th:if="${books.empty}">
+                <p>No books found for this author.</p>
+            </div>
+            <div th:each="book : ${books}" class="book-item">
+                <h3>
+                    <a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}">Book Title</a>
+                </h3>
+                <p th:text="${book.description}">Book Description</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a th:href="@{'/authors/edit/' + ${author.id}}" class="button edit">Edit Author</a>
+            <a th:href="@{'/authors/delete/' + ${author.id}}" 
+               onclick="return confirm('Are you sure you want to delete this author? This will also delete all their books.');" 
+               class="button delete">Delete Author</a>
+            <a href="/authors" class="button">Back to Authors List</a>
+        </div>
+    </div>
+</body>
+</html> 
