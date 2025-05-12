@@ -25,8 +25,7 @@ This is a simple web application built with Spring Boot to manage authors and th
 - `application.properties` - H2 in-memory database configuration
 
 ## Database
-- Uses H2 in-memory database (no setup required)
-- Access H2 console at [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+- Uses H2 in-memory database
 
 ## Tutorials Used
 - Spring Boot RESTful Web Service
